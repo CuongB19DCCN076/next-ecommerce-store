@@ -19,7 +19,7 @@ const Navbar = async () => {
                         "ml-4 flex gap-x-2",
                         "lg:ml-0"
                     )}>
-                        <p className="font-bold text-xl">STORE</p>
+                        <p className="font-bold text-xl">Phoniex</p>
                     </Link>
                     <MainNav data={categories} />
                     <NavbarAction />
