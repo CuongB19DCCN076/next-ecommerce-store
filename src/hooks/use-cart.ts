@@ -20,11 +20,11 @@ const useCart = create(
                 const existingItem = currentItems.find((item) => item.id === data.id);
 
                 if(existingItem) {
-                    return toast("Sản phẩm đã được thêm vào giỏ hàng.");
+                    return toast("Sản phẩm đã có trong giỏ hàng.");
                 }
 
                 set({items: [...get().items, data]});
-                toast.success("Sản phẩm đã xóa khỏi giỏ hàng.");
+                toast.success("Sản phẩm đã được thêm vào giỏ hàng.");
             },
             removeItem:(id: String) => {
               set({items: [...get().items.filter((item) => item.id !== id)] })  
