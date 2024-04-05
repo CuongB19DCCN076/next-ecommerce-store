@@ -1,5 +1,5 @@
 "use client"
-import Button from "@/components/ui/button";
+import Button from "@/components/ui/button2";
 import { cn } from "@/lib/utils";
 import { Color, Size } from "@/types"
 import { useRouter, useSearchParams } from "next/navigation";
@@ -38,7 +38,7 @@ const Filter: React.FC<FilterProps> = ({
 
     return (
         <div className="mb-8">
-            <h3 className="text-lg font-semibold">
+            <h3 className="text-lg font-semibold text-muted-foreground">
                 {name}
             </h3>
             <hr className="my-4" />

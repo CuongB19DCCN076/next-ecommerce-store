@@ -1,6 +1,7 @@
 import getBillboards from '@/actions/get-billboard'
 import getProducts from '@/actions/get-products'
 import Billboard from '@/components/billboard'
+import Category from '@/components/category'
 import ProductList from '@/components/product-list'
 import Container from '@/components/ui/container'
 import { cn } from '@/lib/utils'
@@ -13,6 +14,7 @@ const HomePage = async () => {
         <Container>
             <div className="space-y-10 pb-10">
                 <Billboard data={billboards} />
+                <Category />
                 <div className={cn(
                     'flex flex-col gap-y-8 px-4 ',
                     'sm:px-6',

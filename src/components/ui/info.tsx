@@ -2,7 +2,7 @@
 import { Product } from "@/types"
 import React from "react"
 import Currency from "./currency"
-import Button from "./button"
+import Button from "./button2"
 import { ShoppingCart } from "lucide-react"
 import useCart from "@/hooks/use-cart"
 
@@ -16,7 +16,7 @@ const Info: React.FC<InfoProps> = ({
     const cart = useCart();
     return (
         <div>
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="text-3xl font-bold text-muted-foreground">
                 {data?.name}
             </h1>
             <div className="mt-3 items-end justify-between">
@@ -27,15 +27,15 @@ const Info: React.FC<InfoProps> = ({
             <hr className="my-4" />
             <div className="flex flex-col gap-y-6">
                 <div className="flex items-center gap-x-4">
-                    <h3 className="font-semibold text-black">
+                    <h3 className="font-semibold text-muted-foreground">
                         Size:
                     </h3>
-                    <div>
+                    <div className="text-muted-foreground">
                         {data?.size?.name}
                     </div>
                 </div>
                 <div className="flex items-center gap-x-4">
-                    <h3 className="font-semibold text-black">
+                    <h3 className="font-semibold text-muted-foreground">
                         Color:
                     </h3>
                     <div
@@ -49,6 +49,12 @@ const Info: React.FC<InfoProps> = ({
                     Thêm vào giỏ hàng
                     <ShoppingCart size={20} />
                 </Button>
+            </div>
+            <div className="mt-10 block lg:hidden">
+                <iframe width="320" height="200" src={"https://www.youtube.com/embed/t9EJVsJBKyo?si=mx6h2YxxBzaRypnR"} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+            </div>
+            <div className="mt-10 hidden lg:block">
+                <iframe width="400" height="235" src={"https://www.youtube.com/embed/t9EJVsJBKyo?si=mx6h2YxxBzaRypnR"} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
             </div>
         </div>
     )

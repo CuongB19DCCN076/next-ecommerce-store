@@ -17,7 +17,7 @@ const IconButton: React.FC<IconButtonProps> = ({
         <button
             onClick={onClick}
             className={cn(
-                "rounded-full flex items-center justify-center bg-white border shadow-sm p-2",
+                "rounded-full flex items-center justify-center bg-white border shadow-sm p-2 text-black",
                 "hover:scale-110 transition",
                 className
             )}

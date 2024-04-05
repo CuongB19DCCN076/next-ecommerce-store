@@ -1,14 +1,14 @@
 "use client"
 
 import createOrder from "@/actions/create-order"
-import Button from "@/components/ui/button"
+import Button from "@/components/ui/button2"
 import Currency from "@/components/ui/currency"
 import Loading from "@/components/ui/loading"
 import useCart from "@/hooks/use-cart"
 import { useLoading } from "@/hooks/use-loading"
 import { cn } from "@/lib/utils"
 import axios from "axios"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 
@@ -18,11 +18,10 @@ interface SummaryProps {
 
 const Summary: React.FC<SummaryProps> = ({ userId }) => {
     const items = useCart((state) => state.items);
-    const removeAll = useCart((state) => state.removeAll);
     const [name, setName] = useState<string>("");
     const [phone, setPhone] = useState<string>("");
     const [address, setAddress] = useState<string>("");
-
+    const router = useRouter();
     const { isOpen, onClose, onOpen } = useLoading();
 
     const totalPrice = items.reduce((total, item) => {
@@ -30,21 +29,34 @@ const Summary: React.FC<SummaryProps> = ({ userId }) => {
     }, 0)
 
     const onCheckout = async () => {
+        if (items.length === 0) {
+            toast.error("Chọn ít nhất 1 sản phẩm để mua hàng!")
+            return;
+        }
+        if (name === "" || phone === "" || address === "") {
+            toast.error("Vui lòng điền đầy đủ thông tin nhận hàng!")
+            return;
+        }
         try {
             onOpen();
-            const response = await createOrder({
-                productIds: items.map((item) => item.id),
-                name,
-                phone,
-                address,
-                userId
+            const url = await axios.post("https://bookcar-backend-2.onrender.com/api/v1/payment/pay", {
+                totalPrice: totalPrice
             });
-            toast.success("Đặt hàng thành công!")
+            if (url?.status === 200) {
+                router.push(url?.data);
+            }
+            // const response = await createOrder({
+            //     productIds: items.map((item) => item.id),
+            //     name,
+            //     phone,
+            //     address,
+            //     userId
+            // });
+            // toast.success("Đặt hàng thành công!")
         } catch (error) {
             console.log(error);
-            toast.success("Đặt hàng thành công!")
+            toast.success("Đặt hàng không thành công!")
         } finally {
-            removeAll();
             onClose();
         }
 
@@ -90,7 +102,7 @@ const Summary: React.FC<SummaryProps> = ({ userId }) => {
                             Thanh toán
                         </div>
                         <div className="text-base font-medium text-gray-900">
-                            Khi nhận hàng
+                            Qua VNPAY
                         </div>
                     </div>
                     <div className="flex items-center justify-between border-b border-gray-200 py-4 ">

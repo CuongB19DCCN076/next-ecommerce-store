@@ -17,17 +17,18 @@ const useCart = create(
             items: [],
             addItem: (data: Product) => {
                 const currentItems = get().items;
-                const existingItem = currentItems.find((item) => item.id === data.id);
+                // const existingItem = currentItems.find((item) => item.id === data.id);
 
-                if(existingItem) {
-                    return toast("Item already in cart.");
-                }
+                // if(existingItem) {
+                //     return toast("Item already in cart.");
+                // }
 
                 set({items: [...get().items, data]});
-                toast.success("Item added to cart.");
+                toast.success("Sản phẩm đã được thêm vào giỏ hàng.");
             },
             removeItem:(id: String) => {
               set({items: [...get().items.filter((item) => item.id !== id)] })  
+              toast.success("Sản phẩm đã được xóa vào giỏ hàng.");
             },
             removeAll: () => {
                 set({ items: []})

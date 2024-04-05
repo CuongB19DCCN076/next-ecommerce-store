@@ -1,9 +1,9 @@
 
-const LayoutAuth = ({children}: {
-    children: React.ReactNode
+const LayoutAuth = ({ children }: {
+  children: React.ReactNode
 }) => {
   return (
-    <div className="flex justify-center items-center h-full">{children}</div>
+    <div className="flex justify-center items-center h-screen">{children}</div>
   )
 }
 
